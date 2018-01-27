@@ -1,5 +1,7 @@
 from unittest import TestCase
 import kcryptolearn.modified_vigenere as mv
+import kcryptolearn.english_crypto as ec
+
 class TestModifiedVigenere(TestCase):
 
     def test_encode(self):
@@ -26,3 +28,14 @@ class TestModifiedVigenere(TestCase):
         keylen = mv.get_key_length(string)
 
         self.assertEqual(0, keylen % keylen_ans, "Wrong keylength.")
+
+    def test_reduce_to_normal_vigenere(self):
+        string = "ATTACKATDAWN"
+        encoded_string = mv.encode(string, "JAZZ")
+
+        vigenere_text = mv.reduce_to_regular_vigenere(encoded_string, 4)
+        vigenere_text = ec.convert_alpha_to_nums(vigenere_text)
+
+        actual_vegenere_text = [9, 19, 18, 25, 11, 10, 25, 18, 12, 0, 21, 12]
+
+        self.assertEqual(actual_vegenere_text, vigenere_text, "The cipher texts to not match")

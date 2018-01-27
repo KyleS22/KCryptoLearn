@@ -142,6 +142,32 @@ def get_key_length(msg, tolerance=0.06):
 
     return -1
 
+def reduce_to_regular_vigenere(msg, keylen):
+    """
+    Given the keylength, turn the problem into a normal vigenere cipher problem
+    :param msg: The encoded message
+    :param keylen: The length of the key
+    :return: The ciphertext as a vigenere cipher
+    """
+    msg_nums = ec.convert_alpha_to_nums(msg)
+
+    cur_index = 0
+
+    vigenere_text = []
+
+    while cur_index < len(msg_nums):
+
+        if cur_index < keylen:
+            vigenere_text.append(msg_nums[cur_index])
+
+        else:
+            vigenere_text.append(msg_nums[cur_index] - msg_nums[cur_index - keylen])
+
+        cur_index += 1
+
+
+    return ec.convert_nums_to_alpha(vigenere_text)
+
 
 # TODO Find a good algorithm for breaking this encryption
 
