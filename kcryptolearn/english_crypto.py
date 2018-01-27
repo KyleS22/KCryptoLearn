@@ -25,8 +25,9 @@ def convert_alpha_to_nums(letters):
 
     try:
         for letter in letters:
-            number = convert_alpha_to_num(letter)
-            numbers.append(number)
+            if not letter == ' ':
+                number = convert_alpha_to_num(letter)
+                numbers.append(number)
 
         return numbers
     except:
@@ -82,8 +83,60 @@ def convert_alpha_to_num(letter):
 
 
 def get_bool(prompt):
+    """
+    Force user to enter boolean value
+    :param prompt: The prompt for input
+    :return: true or false depending on the user's input
+    """
     while True:
         try:
             return {"y": True, "n": False}[input(prompt).lower()]
         except KeyError:
             print("Invalid input please enter y or n!")
+
+def get_frequency_count(s):
+    """
+    Returns a dictionary containing the frequency of each character in s
+    :param s: The string to get the frequency of
+    :return: A dictionary containing the frequency of each character in s
+    """
+    freqs = {}
+
+    for letter in s.upper():
+
+        if letter == ' ':
+            continue
+
+        if letter in freqs.keys():
+            freqs[letter] += 1
+        else:
+            freqs[letter] = 1
+
+    return freqs
+
+def index_of_coincidence(s):
+    """
+    Calculates the index of coincidence of s
+    :param s: The string to get the index of coincidence for
+    :return: The index of coincidence of s
+    """
+    s = s.replace(" ", "")
+
+    n = len(s)
+
+    freqs = get_frequency_count(s)
+
+    if(n-1) > 0:
+        coefficient = 1/(n * (n-1))
+    else:
+        coefficient = 0
+
+    freq_sum = 0
+
+    for key in freqs.keys():
+        freq_sum += freqs[key] * (freqs[key] - 1)
+
+    index = freq_sum * coefficient
+
+    return index
+
