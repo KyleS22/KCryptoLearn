@@ -5,6 +5,7 @@ Author: Kyle Seidenthal
 """
 import kcryptolearn.english_crypto as ec
 import math
+import kcryptolearn.vigenere_cipher as vc
 
 N = 26  # For english letter encoding
 
@@ -96,7 +97,15 @@ def guess_key_length(msg, tolerance=0.06):
     :return: The length of the key used to encode msg, a list of strings of the text divided into k groups k characters
              apart
     """
+    msg = msg.replace(" ", "")
+
     # TODO: go through each keylen and reduce to vigenere
+    for k in range(len(msg)):
+        reduced = reduce_to_regular_vigenere(msg, k)
+
+        keylen, strings = vc.guess_keylen(reduced)
+        if keylen == k:
+            print(vc.get_largest_mutual_inidces_of_coincidence(strings))
     # TODO: get keylen from vigenere
     # TODO: Check if avg ind co from strings is > tolerance
     # TODO: If not, try new k
@@ -182,5 +191,7 @@ def reduce_to_regular_vigenere(msg, keylen):
 
 
 # TODO Find a good algorithm for breaking this encryption
-
+guess_key_length("sszpqxmmqgnhakacglfqgujfgdmiuqbgvgshsuvulreippwksbsluhlqciiovjwvqtvvkar\
+pbkcusluozvfpjrndrchbldsxpepuzwrqkynbcbuzhcojrcdehtbtiwaofcjfuggbhfovfap\
+aqjvzzsmytmvrfsyohewzuwljadlsjughociwxfcir")
 

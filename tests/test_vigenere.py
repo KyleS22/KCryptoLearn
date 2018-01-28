@@ -35,7 +35,11 @@ class TestVigenere(unittest.TestCase):
 
         self.assertEqual(keylen, actual_keylen, "Wrong keylength.")
 
-    @unittest.skip("Not yet needed")
+    #@unittest.skip("Not yet needed")
     def test_get_largest_mutual_indices_of_coincidence(self):
-        self.fail()
+        keylen, strings = vc.guess_keylen(
+            ['Y', 'S', 'E', 'D', 'I', 'V', 'T', 'W', 'S', 'D', 'P', 'M', 'Q', 'A', 'Y', 'H', 'F',
+             'J', 'S', 'Y', 'I', 'V', 'T', 'Z', 'D', 'T', 'N', 'F', 'P', 'R', 'V', 'Z', 'F', 'T',
+             'N'])
+        print(vc.get_largest_mutual_inidces_of_coincidence(strings))
 
