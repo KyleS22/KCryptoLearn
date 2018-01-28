@@ -104,3 +104,11 @@ class TestEnglishCrypto(TestCase):
 
         self.assertAlmostEqual(actual_index, index, places=4)
 
+    def test_mutual_index_of_coincidence(self):
+        s = "A bird in hand is worth two in the bush"
+        t = "A stitch in time saves nine"
+
+        ind_co = ec.mutual_index_of_coincidence(s, t)
+        actual_ind_co = 0.0773
+
+        self.assertAlmostEqual(ind_co, actual_ind_co, places=4)

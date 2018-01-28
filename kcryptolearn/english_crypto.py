@@ -140,3 +140,30 @@ def index_of_coincidence(s):
 
     return index
 
+def mutual_index_of_coincidence(s, t):
+    """
+    Determine the mutual index of coincidence for the strings s and t
+    :param s: A string
+    :param t: Another string
+    :return: The mutual index of coincidence of the two strings
+    """
+    s = s.replace(" ", "")
+    t = t.replace(" ", "")
+
+    n = len(s)
+    m = len(t)
+
+    s_freqs = get_frequency_count(s)
+    t_freqs = get_frequency_count(t)
+
+    coefficient = 1/(n*m)
+
+    freq_sum = 0
+
+    for key in s_freqs.keys():
+        if key in t_freqs.keys():
+            freq_sum += s_freqs[key] * t_freqs[key]
+
+    index = freq_sum * coefficient
+
+    return index
