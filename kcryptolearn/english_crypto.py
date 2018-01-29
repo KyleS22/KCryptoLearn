@@ -150,6 +150,9 @@ def mutual_index_of_coincidence(s, t):
     s = s.replace(" ", "")
     t = t.replace(" ", "")
 
+    s = s.upper()
+    t = t.upper()
+
     n = len(s)
     m = len(t)
 

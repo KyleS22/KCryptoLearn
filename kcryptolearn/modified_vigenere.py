@@ -97,71 +97,7 @@ def guess_key_length(msg, tolerance=0.06):
     :return: The length of the key used to encode msg, a list of strings of the text divided into k groups k characters
              apart
     """
-    msg = msg.replace(" ", "")
-
-    # TODO: go through each keylen and reduce to vigenere
-    for k in range(len(msg)):
-        reduced = reduce_to_regular_vigenere(msg, k)
-
-        keylen, strings = vc.guess_keylen(reduced)
-        if keylen == k:
-            print(vc.get_largest_mutual_inidces_of_coincidence(strings))
-    # TODO: get keylen from vigenere
-    # TODO: Check if avg ind co from strings is > tolerance
-    # TODO: If not, try new k
-    # TODO: If so, return k and strings
-
-    # TODO USE NORMAL VIGENERE METHODS FOR:
-    # TODO: now get greatest mutial ind cos
-    # TODO: Not sure now,  solve for the shift by hand I guess, might need to print table of all mutial ind cos like in
-    # TODO: textbook
-
-    # msg_nums = ec.convert_alpha_to_nums(msg)
-    #
-    # k = 1       # initial key guess
-    #
-    # while k < (len(msg_nums)):
-    #
-    #     new_text = []
-    #
-    #     cur_msg_index = 0
-    #
-    #     while cur_msg_index < len(msg_nums):
-    #             if cur_msg_index < k:
-    #                 new_text.append(msg_nums[cur_msg_index])    # If we are still on the first use of key, don't change
-    #             else:
-    #                 # Subtract the previous kth character from this one to get a regular vigenere
-    #                 new_letter = msg_nums[cur_msg_index] - msg_nums[(cur_msg_index - k)]
-    #                 new_text.append(new_letter)
-    #
-    #             cur_msg_index += 1
-    #
-    #     # Convert to text
-    #     new_text_string = ec.convert_nums_to_alpha(new_text)
-    #
-    #     # Now we split the text into k groups; each with every kth letter from the start letter
-    #     strings = ['']*k
-    #
-    #     for i in range(len(new_text_string)):
-    #         strings[(i % k)] += new_text_string[i]
-    #
-    #     ind_cos = [0]*k
-    #
-    #     # Calculate index of coincidence for each sub-string
-    #     cur_index = 0
-    #     for string in strings:
-    #         ind_cos[cur_index] = ec.index_of_coincidence(string)
-    #         cur_index += 1
-    #
-    #     # Get the average index and see if it is close to english
-    #     avg_index = sum(ind_cos)/len(ind_cos)
-    #
-    #     if avg_index >= tolerance:
-    #         return k
-    #
-    #     k += 1
-    #
-    # return -1
+    pass
 
 def reduce_to_regular_vigenere(msg, keylen):
     """
@@ -190,8 +126,7 @@ def reduce_to_regular_vigenere(msg, keylen):
     return ec.convert_nums_to_alpha(vigenere_text)
 
 
+
+
 # TODO Find a good algorithm for breaking this encryption
-guess_key_length("sszpqxmmqgnhakacglfqgujfgdmiuqbgvgshsuvulreippwksbsluhlqciiovjwvqtvvkar\
-pbkcusluozvfpjrndrchbldsxpepuzwrqkynbcbuzhcojrcdehtbtiwaofcjfuggbhfovfap\
-aqjvzzsmytmvrfsyohewzuwljadlsjughociwxfcir")
 

@@ -18,16 +18,8 @@ class TestModifiedVigenere(unittest.TestCase):
 
         self.assertEqual(decoded, answer, "Decoding incorrect.")
 
-    @unittest.skip("Test Broken.")
     def test_guess_key_length(self):
-        string = ['C', 'H', 'D', 'P', 'F', 'P', 'E', 'Y', 'P', 'G', 'R', 'T', 'L', 'L', 'E', 'P', 'D', 'F', 'P', 'D',
-                  'E', 'T', 'J', 'G', 'E', 'M', 'P', 'J', 'Y', 'M', 'N', 'G', 'K', 'A', 'S']
-
-        keylen_ans = 4   # Used key JAZZ
-
-        keylen = mv.guess_key_length(string)
-
-        self.assertEqual(0, keylen % keylen_ans, "Wrong keylength.")
+        self.fail()
 
     def test_reduce_to_normal_vigenere(self):
         string = "ATTACKATDAWN"

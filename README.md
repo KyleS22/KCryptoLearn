@@ -7,3 +7,4 @@ NOTE: THESE ALGORITHMS ARE NOT SECURE AND SHOULD NOT BE USED TO ACTUALLY ENCRYPT
 - [ ] Caesar Cipher 
 - [ ] Vigenere Cipher
 - [ ] Modified Viginere Cipher
+- [ ] Affine Shift
