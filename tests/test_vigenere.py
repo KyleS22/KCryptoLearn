@@ -5,8 +5,7 @@ Author: Kyle Seidenthal
 """
 import unittest
 import kcryptolearn.vigenere_cipher as vc
-import pandas as pd
-import numpy as np
+import kcryptolearn.english_crypto as ec
 
 
 class TestVigenere(unittest.TestCase):
@@ -98,7 +97,6 @@ class TestVigenere(unittest.TestCase):
         self.assertEqual(row5, largest_list[4], "The row is incorrect")
 
 
-
     def test_split_into_k_strings(self):
         string = "ThisIsATest"
         k = 3
@@ -148,7 +146,17 @@ class TestVigenere(unittest.TestCase):
         self.assertEqual(shifted_string, ['Y', 'M', 'N', 'X', 'N', 'X', 'F', 'Y', 'J', 'X', 'Y'], "String was not shifted correctly")
 
     def test_get_average_indices_of_coincidence(self):
-        self.fail()
+        string = "A BIRD IN HAND IS WORTH TWO IN THE BUSH"
+        actual_index1 = ec.index_of_coincidence(string)
+
+        string2 = "This is a test"
+        actual_index2 = ec.index_of_coincidence(string2)
+
+        avgs = [actual_index1, actual_index2]
+        actual_avg = sum(avgs)/len(avgs)
+
+        computed_avg = vc.get_avg_indices_of_coincidence([string, string2])
+        self.assertAlmostEqual(actual_avg, computed_avg, places=4)
 
 
 

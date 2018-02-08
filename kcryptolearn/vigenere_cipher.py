@@ -56,7 +56,6 @@ def guess_keylen(msg, tolerance=0.06):
     :param msg: The message to get the keylength for
     :return: The proposed keylength, a list of strings of the text divided into k groups k characters apart
     """
-    # TODO: This can be improved
     # Try every key length until we find a good one
     for k in range(1, len(msg)):
         strings = [""] * k
