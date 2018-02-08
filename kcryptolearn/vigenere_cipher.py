@@ -126,7 +126,9 @@ def shift_string_by_n(string, n):
 
 def get_all_mutual_indices_of_coincidence(strings):
     """
-    Get a dataframe of all mutual indices of coincidence for a set of strings
+    Get a dataframe of all mutual indices of coincidence for a set of strings for each possible shift
+    amount of each string
+
     :param strings: A list of strings to get the indices of coincidence for
     :return: A pandas dataframe of all mutual indices of coincidence
     """

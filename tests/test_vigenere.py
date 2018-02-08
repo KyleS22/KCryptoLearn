@@ -36,6 +36,12 @@ class TestVigenere(unittest.TestCase):
         self.assertEqual(keylen, actual_keylen, "Wrong keylength.")
 
     def test_get_all_mutual_indices_of_coincidence(self):
+        string1 = "Hello how are you"
+        string2 = "This is another string"
+        string3 = "One more string"
+
+        mut_ind_cos = vc.get_all_mutual_indices_of_coincidence([string1, string2, string3])
+        print(mut_ind_cos)
         self.fail()
 
     def test_get_largest_mutual_indices_of_coincidence(self):
