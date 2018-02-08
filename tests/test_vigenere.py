@@ -70,15 +70,34 @@ class TestVigenere(unittest.TestCase):
                     0.05668016194331984, 0.04453441295546559, 0.04453441295546559, 0.008097165991902834,
                     0.016194331983805668, 0.04453441295546559]
 
-
         self.assertEqual(ans_row1, mut_ind_cos_list[0], "The row is incorrect")
         self.assertEqual(ans_row2, mut_ind_cos_list[1], "The row is incorrect")
         self.assertEqual(ans_row3, mut_ind_cos_list[2], "The row is incorrect")
 
-
-
     def test_get_largest_mutual_indices_of_coincidence(self):
-        self.fail()
+        string1 = "Hello how are you"
+        string2 = "This is another string"
+        string3 = "One more string"
+
+        mut_ind_cos = vc.get_all_mutual_indices_of_coincidence([string1, string2, string3])
+
+        largest = vc.get_largest_mutual_indices_of_coincidence(mut_ind_cos)
+
+        largest_list = largest.values.tolist()
+
+        row1 = [0.0, 2.0, 0.0, 0.06593406593406594]
+        row2 = [0.0, 2.0, 16.0, 0.06593406593406594]
+        row3 = [1.0, 2.0, 0.0, 0.08906882591093118]
+        row4 = [1.0, 2.0, 4.0, 0.06477732793522267]
+        row5 = [1.0, 2.0, 5.0, 0.06477732793522267]
+
+        self.assertEqual(row1, largest_list[0], "The row is incorrect")
+        self.assertEqual(row2, largest_list[1], "The row is incorrect")
+        self.assertEqual(row3, largest_list[2], "The row is incorrect")
+        self.assertEqual(row4, largest_list[3], "The row is incorrect")
+        self.assertEqual(row5, largest_list[4], "The row is incorrect")
+
+
 
     def test_split_into_k_strings(self):
         string = "ThisIsATest"
@@ -127,7 +146,6 @@ class TestVigenere(unittest.TestCase):
         shifted_string = vc.shift_string_by_n(string, n)
 
         self.assertEqual(shifted_string, ['Y', 'M', 'N', 'X', 'N', 'X', 'F', 'Y', 'J', 'X', 'Y'], "String was not shifted correctly")
-
 
     def test_get_average_indices_of_coincidence(self):
         self.fail()

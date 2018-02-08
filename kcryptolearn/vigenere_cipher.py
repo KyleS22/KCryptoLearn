@@ -168,14 +168,9 @@ def get_largest_mutual_indices_of_coincidence(all_ind_cos, tolerance = 0.064):
 
     largest_values = []
 
-    print(rows)
-    print(columns)
-
     for k in rows:
         for l in columns:
             if all_ind_cos[l][k] > tolerance:
-                print(all_ind_cos[l][k])
-                print(l, k)
                 i = all_ind_cos['i'][k]
                 j = all_ind_cos['j'][k]
                 shift = l
