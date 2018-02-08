@@ -8,3 +8,8 @@ NOTE: THESE ALGORITHMS ARE NOT SECURE AND SHOULD NOT BE USED TO ACTUALLY ENCRYPT
 - [ ] Vigenere Cipher
 - [ ] Modified Viginere Cipher
 - [ ] Affine Shift
+- [ ] Diffie-Helman
+- [ ] ElGammal
+- [ ] Shanks
+- [ ] Miller Rabin
+- [ ] Pollard p-1 factoring
