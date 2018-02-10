@@ -29,12 +29,23 @@ class TestVigenere(unittest.TestCase):
         self.assertEqual(decoded_string, actual_decoded_string, "Decoding incorrect.")
 
     def test_guess_keylen(self):
+        # A hand crafted example
         keylen, strings = vc.guess_keylen(['Y', 'S', 'E', 'D', 'I', 'V', 'T', 'W', 'S', 'D','P', 'M', 'Q', 'A', 'Y', 'H', 'F',
                                   'J', 'S', 'Y', 'I', 'V', 'T', 'Z', 'D', 'T', 'N', 'F', 'P', 'R', 'V', 'Z', 'F', 'T',
                                   'N'])
         actual_keylen = 8
 
         self.assertEqual(keylen, actual_keylen, "Wrong keylength.")
+
+        key = "Test"
+        string = "Today is a good day to go outside and play.  Wouldn't you agree?  This string needs to be long for " \
+                 "vigenere to be useful"
+
+        encoded_text = vc.encode(string, key)
+
+        keylen, strings = vc.guess_keylen(encoded_text)
+
+        self.assertEqual(keylen, len(key), "Wrong keylength")
 
     def test_get_all_mutual_indices_of_coincidence(self):
         string1 = "Hello how are you"
