@@ -170,4 +170,52 @@ class TestVigenere(unittest.TestCase):
         self.assertAlmostEqual(actual_avg, computed_avg, places=4)
 
 
+    def test_generate_all_possible_keys(self):
+        string1 = "Hello how are you"
+        string2 = "This is another string"
+        string3 = "One more string"
 
+        mut_ind_cos = vc.get_all_mutual_indices_of_coincidence([string1, string2, string3])
+
+        largest = vc.get_largest_mutual_indices_of_coincidence(mut_ind_cos)
+
+        possible_keys = vc.generate_all_possible_keys(largest)
+
+        actual_possible_keys = ["AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III", "JJJ", "KKK", "LLL",
+                                "MMM", "NNN", "OOO", "PPP", "QQQ", "RRR", "SSS", "TTT", "UUU", "VVV", "WWW", "XXX",
+                                "YYY", "ZZZ", # First set
+                                "AEA", "BFB", "CGC", "DHD", "EIE", "FJF", "GKG", "HLH", "IMI", "JNJ", "KOK", "LPL",
+                                "MQM", "NRN", "OSO", "PTP", "QUQ", "RVR", "SWS", "TXT", "UYU", "VZV", "WAW", "XBX",
+                                "YCY", "ZDZ", # SECOND SET
+                                "AFA", "BGB", "CHC", "DID", "EJE", "FKF", "GLG", "HMH", "INI", "JOJ", "KPK", "LQL",
+                                "MRM", "NSN", "OTO", "PUP", "QVQ", "RWR", "SXS", "TYT", "UZU", "VAV", "WBW", "XCX",
+                                "YDY", "ZEZ",
+                                "AKK", "BLL", "CMM", "DNN", "EOO", "FPP", "GQQ", "HRR", "ISS", "JTT", "KUU", "LVV",
+                                "MWW", "NXX", "OYY", "PZZ", "QAA", "RBB", "SCC", "TDD", "UEE", "VFF", "WGG", "XHH",
+                                "YII", "ZJJ",
+                                "AOK", "BPL", "CQM", "DRN", "ESO", "FTP", "GUQ", "HVR", "IWS", "JXT", "KYU", "LZV",
+                                "MAW", "NBX", "OCY", "PDZ", "QEA", "RFB", "SGC", "THD", "UIE", "VJF", "WKG", "XLH",
+                                "YMI", "ZNJ",
+                                "APK", "BQL", "CRM", "DSN", "ETO", "FUP", "GVQ", "HWR", "IXS", "JYT", "KZU", "LAV",
+                                "MBW", "NCX", "ODY", "PEZ", "QFA", "RGB", "SHC", "TID", "UJE", "VKF", "WLG", "XMH",
+                                "YNI", "ZOJ"]
+
+        self.assertListEqual(possible_keys, actual_possible_keys)
+
+
+    def test_break_vigenere_cipher(self):
+        key = "Test"
+        string = "Today is a good day to go outside and play.  Wouldn't you agree?  This string needs to be long for " \
+                 "vigenere to be useful"
+
+        encoded_text = vc.encode(string, key)
+
+        possible_decoded = vc.break_vigenere_cipher(encoded_text)
+
+        actual_possible_decoded = []
+
+        for i in range(26):
+            shifted_key = vc.shift_string_by_n(key, i)
+            actual_possible_decoded.append(vc.encode(string, shifted_key))
+
+        self.assertListEqual(possible_decoded, actual_possible_decoded, "Decoded possiblilities are incorrect.")

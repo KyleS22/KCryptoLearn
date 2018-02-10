@@ -7,6 +7,7 @@ import kcryptolearn.english_crypto as ec
 import pandas as pd
 import numpy as np
 
+
 def encode(msg, key):
     """
     Encode a message using the vigenere cipher
@@ -27,6 +28,7 @@ def encode(msg, key):
         key_index = (key_index + 1) % len(key)
 
     return ec.convert_nums_to_alpha(encoded_string)
+
 
 def decode(msg, key):
     """
@@ -66,14 +68,14 @@ def guess_keylen(msg, tolerance=0.06):
 
         ind_cos = [0] * k
 
-        #Calculate index of coincidence for each sub-string
+        # Calculate index of coincidence for each sub-string
         cur_index = 0
         for string in strings:
             ind_cos[cur_index] = ec.index_of_coincidence(string)
             cur_index += 1
 
         # Get the average index and see if it is close to english
-        avg_index = sum(ind_cos)/len(ind_cos)
+        avg_index = sum(ind_cos) / len(ind_cos)
 
         if avg_index >= tolerance:
             return k, strings
@@ -107,6 +109,7 @@ def split_into_k_strings(msg, k):
 
     return strings
 
+
 def shift_string_by_n(string, n):
     """
     Given a string, shift the characters up by n
@@ -123,6 +126,7 @@ def shift_string_by_n(string, n):
 
     return ec.convert_nums_to_alpha(shifted)
 
+
 def get_all_mutual_indices_of_coincidence(strings):
     """
     Get a dataframe of all mutual indices of coincidence for a set of strings for each possible shift
@@ -133,7 +137,7 @@ def get_all_mutual_indices_of_coincidence(strings):
     """
     # Set up the columns of the data frame, 0-25, one column for each shift
     column_nums = [x for x in range(26)]
-    column_names = ['i', 'j'] + column_nums     # Add a column to keep track of which string the index to belongs to
+    column_names = ['i', 'j'] + column_nums  # Add a column to keep track of which string the index to belongs to
 
     mutual_ind_cos = pd.DataFrame(columns=column_names)
 
@@ -154,7 +158,7 @@ def get_all_mutual_indices_of_coincidence(strings):
     return mutual_ind_cos
 
 
-def get_largest_mutual_indices_of_coincidence(all_ind_cos, tolerance = 0.064):
+def get_largest_mutual_indices_of_coincidence(all_ind_cos, tolerance=0.064):
     """
     Given a dataframe of all mutual indices of coincidence, find all indices greater than tolerance
     :param all_ind_cos: A pandas dataframe of all indices of coincidence for a set of strings
@@ -179,6 +183,7 @@ def get_largest_mutual_indices_of_coincidence(all_ind_cos, tolerance = 0.064):
     largest_values_df = pd.DataFrame(largest_values, columns=['i', 'j', 'shift', 'mut_ind_co'])
     return largest_values_df
 
+
 def get_avg_indices_of_coincidence(strings):
     """
     Get the average of the indices of coincidence for a set of strings
@@ -191,6 +196,27 @@ def get_avg_indices_of_coincidence(strings):
         ind_co = ec.index_of_coincidence(string)
         ind_cos.append(ind_co)
 
-    avg_ind_co = sum(ind_cos)/len(ind_cos)
+    avg_ind_co = sum(ind_cos) / len(ind_cos)
 
     return avg_ind_co
+
+
+def generate_all_possible_keys(largest_indices_of_coincidence):
+    """
+    Gets a list of all possible keys by solving the linear equation provided by the largest indices of coincidence.
+    :param largest_indices_of_coincidence: A pandas dataframe with the largest indices of coincidence and their shift
+            amounts
+    :return: A list of keys to try
+    """
+
+    return []
+
+def break_vigenere_cipher(msg):
+    """
+    Decode the given message.  Only effective with long strings of text.  Will output a large number of possible
+    decryptions to choose from.
+    :param msg: The encrypted text
+    :return: A list of possible decrytions
+    """
+
+    return None
