@@ -201,13 +201,38 @@ def get_avg_indices_of_coincidence(strings):
     return avg_ind_co
 
 
-def generate_all_possible_keys(largest_indices_of_coincidence):
+def generate_all_possible_keys(largest_indices_of_coincidence, keylen):
     """
     Gets a list of all possible keys by solving the linear equation provided by the largest indices of coincidence.
     :param largest_indices_of_coincidence: A pandas dataframe with the largest indices of coincidence and their shift
             amounts
+    :param keylen: The length of the key
     :return: A list of keys to try
     """
+
+    possible_keys = []
+
+    master_frame = largest_indices_of_coincidence[largest_indices_of_coincidence['i'] == 0]
+    master_frame.insert(0, 'tmp', 1)
+
+    for i in range(1, keylen):
+        frame = largest_indices_of_coincidence[largest_indices_of_coincidence['i'] == i]
+        if not frame.empty:
+            frame.insert(0, 'tmp', 1) # Create a fake key to join the tables later
+            master_frame = master_frame.merge(frame, on=['tmp'])
+
+
+    print(master_frame)
+
+
+    for row in master_frame.iterrows():
+        start_key = []
+        for i in range(keylen):
+            start_key.append('A')
+
+        # TODO: shift start_key[j] by shift amount for that row relative to i
+        # TODO: Generate more keys by shifting start key by 1-25
+
 
     return []
 
@@ -219,4 +244,4 @@ def break_vigenere_cipher(msg):
     :return: A list of possible decrytions
     """
 
-    return None
+    return []

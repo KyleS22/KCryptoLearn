@@ -179,7 +179,7 @@ class TestVigenere(unittest.TestCase):
 
         largest = vc.get_largest_mutual_indices_of_coincidence(mut_ind_cos)
 
-        possible_keys = vc.generate_all_possible_keys(largest)
+        possible_keys = vc.generate_all_possible_keys(largest, 3)
 
         actual_possible_keys = ["AAA", "BBB", "CCC", "DDD", "EEE", "FFF", "GGG", "HHH", "III", "JJJ", "KKK", "LLL",
                                 "MMM", "NNN", "OOO", "PPP", "QQQ", "RRR", "SSS", "TTT", "UUU", "VVV", "WWW", "XXX",
@@ -201,21 +201,3 @@ class TestVigenere(unittest.TestCase):
                                 "YNI", "ZOJ"]
 
         self.assertListEqual(possible_keys, actual_possible_keys)
-
-
-    def test_break_vigenere_cipher(self):
-        key = "Test"
-        string = "Today is a good day to go outside and play.  Wouldn't you agree?  This string needs to be long for " \
-                 "vigenere to be useful"
-
-        encoded_text = vc.encode(string, key)
-
-        possible_decoded = vc.break_vigenere_cipher(encoded_text)
-
-        actual_possible_decoded = []
-
-        for i in range(26):
-            shifted_key = vc.shift_string_by_n(key, i)
-            actual_possible_decoded.append(vc.encode(string, shifted_key))
-
-        self.assertListEqual(possible_decoded, actual_possible_decoded, "Decoded possiblilities are incorrect.")
