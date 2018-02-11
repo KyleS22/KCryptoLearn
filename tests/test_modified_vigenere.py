@@ -1,6 +1,7 @@
 import unittest
 import kcryptolearn.modified_vigenere as mv
 import kcryptolearn.english_crypto as ec
+import kcryptolearn.vigenere_cipher as vc
 
 class TestModifiedVigenere(unittest.TestCase):
 
@@ -18,9 +19,6 @@ class TestModifiedVigenere(unittest.TestCase):
 
         self.assertEqual(decoded, answer, "Decoding incorrect.")
 
-    def test_guess_key_length(self):
-        self.fail()
-
     def test_reduce_to_normal_vigenere(self):
         string = "ATTACKATDAWN"
         encoded_string = mv.encode(string, "JAZZ")
@@ -31,3 +29,20 @@ class TestModifiedVigenere(unittest.TestCase):
         actual_vegenere_text = [9, 19, 18, 25, 11, 10, 25, 18, 12, 0, 21, 12]
 
         self.assertEqual(actual_vegenere_text, vigenere_text, "The cipher texts to not match")
+
+    def test_break_modified_vigenere(self):
+        key = "Test"
+        string = "Today is a good day to go outside and play.  Wouldn't you agree?  This string needs to be long for " \
+                 "vigenere to be useful"
+
+        encoded_text = mv.encode(string, key)
+
+        possible_decoded = mv.break_modified_vigenere(encoded_text)
+
+        actual_possible_decoded = []
+
+        for i in range(26):
+            shifted_key = vc.shift_string_by_n(key, i)
+            actual_possible_decoded.append(vc.encode(string, shifted_key))
+
+        self.assertListEqual(possible_decoded, actual_possible_decoded, "Decoded possiblilities are incorrect.")

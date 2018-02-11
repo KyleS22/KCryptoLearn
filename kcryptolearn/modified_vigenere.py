@@ -84,20 +84,6 @@ def decode(msg, key):
 
     return decoded_string
 
-def guess_key_length(msg, tolerance=0.06):
-    """
-    Determine the possible key length of the message encoded with modified vigenere.
-    Note that this length can be wrong, but it is likely that the actual key length divides this number
-    or is a multiple of it.
-
-    Not so good on small ciphertext lengths
-
-    :param msg: The message to get the key length for
-    :param tolerance: How close to english the text should be before stopping
-    :return: The length of the key used to encode msg, a list of strings of the text divided into k groups k characters
-             apart
-    """
-    pass
 
 def reduce_to_regular_vigenere(msg, keylen):
     """
@@ -125,8 +111,13 @@ def reduce_to_regular_vigenere(msg, keylen):
 
     return ec.convert_nums_to_alpha(vigenere_text)
 
+def break_modified_vigenere(msg):
+    """
+    Decode the message by trying all keylengths k and reducing to a normal vigenere problem and guessing its keylength.
+    If the keylength of the reduced problem cannot be found, try the next keylength
+    :param msg: The message to decode
+    :return: Possible decryptions.
+    """
 
-
-
-# TODO Find a good algorithm for breaking this encryption
+    return []
 
