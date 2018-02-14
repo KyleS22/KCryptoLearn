@@ -10,7 +10,8 @@ NOTE: THESE ALGORITHMS ARE NOT SECURE AND SHOULD NOT BE USED TO ACTUALLY ENCRYPT
 - [ ] Vigenere Cipher
 - [ ] Modified Viginere Cipher
 - [ ] Affine Shift
-- [ ] Diffie-Helman
+- [ ] Pohlig-Hellman
+- [ ] Diffie-Hellman
 - [ ] ElGammal
 - [ ] Shanks
 - [ ] Miller Rabin
