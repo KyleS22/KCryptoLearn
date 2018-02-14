@@ -16,3 +16,7 @@ NOTE: THESE ALGORITHMS ARE NOT SECURE AND SHOULD NOT BE USED TO ACTUALLY ENCRYPT
 - [ ] Shanks
 - [ ] Miller Rabin
 - [ ] Pollard p-1 factoring
+- [ ] Sieve of Eratostenes
+- [ ] Quadratic Sieve
+- [ ] RSA
+
