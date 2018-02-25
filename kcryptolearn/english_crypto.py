@@ -170,3 +170,57 @@ def mutual_index_of_coincidence(s, t):
     index = freq_sum * coefficient
 
     return index
+
+
+def encode_string_b26(string, chunk_size=3):
+    """
+    Encode the given string as an integer using base 26.  The string will be split into strings of size chunk_size,
+    then those substrings will be encoded using base 26, and returned as a base 10 integer.  If the string length is not
+    divisible by chunk_size, the letter 'q' will be added to the end until it is.
+    Example: chunk_size=3 PIZZAZZES -> [[P, I, Z], [Z, A, Z], [Z, E, S]] -> [17123, 16925, 12297]
+    :param string: The string to encode
+    :chunk_size: The size of the strings to split the string into to encode as base 26 numbers
+    """
+
+    while len(string) % chunk_size != 0:
+        string += 'q'
+
+    chunks = len(string)
+
+    split_strings = [string[i:i + chunk_size] for i in range(0, chunks, chunk_size)]
+
+    strings_as_numbers = []
+
+    for s in split_strings:
+        encoded_string = 0
+        i = 0
+        for char in s:
+            char_as_num = convert_alpha_to_num(char)
+            encoded_string += char_as_num * (26 ** i)
+            i += 1
+        strings_as_numbers.append(encoded_string)
+
+    return strings_as_numbers
+
+
+def decode_string(numbers, chunk_size=3):
+    """
+    Decode a list of integers that were encoded using base 26 into their characters
+    :param numbers: A list of encoded numbers
+    :param chunk_size: The size of the chunks used to encode the strings
+    """
+    string = []
+
+    for number in numbers:
+        letters_as_nums = []
+        for i in range(chunk_size):
+            letters_as_nums.append(int((number / 26 ** i)) % 26)
+
+        letters = []
+
+        for letter in letters_as_nums:
+            letters.append(convert_num_to_alpha(letter))
+
+        string.append(letters)
+
+    return string

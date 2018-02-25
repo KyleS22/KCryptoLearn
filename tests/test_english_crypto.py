@@ -112,3 +112,20 @@ class TestEnglishCrypto(TestCase):
         actual_ind_co = 0.0773
 
         self.assertAlmostEqual(ind_co, actual_ind_co, places=4)
+
+    def test_encode_string_b26(self):
+        string = "PIZZAZZES"
+
+        expected = [17123, 16925, 12297]
+        encoded = ec.encode_string_b26(string, 3)
+
+        self.assertListEqual(expected, encoded)
+
+    def test_decode_string_b26(self):
+        numbers = [17123, 16925, 12297]
+
+        expected = [['P', 'I', 'Z'], ['Z', 'A', 'Z'], ['Z', 'E', 'S']]
+        decoded = ec.decode_string(numbers, 3)
+
+        self.assertListEqual(expected, decoded)
+
