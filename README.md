@@ -6,24 +6,21 @@ NOTE: THESE ALGORITHMS ARE NOT SECURE AND SHOULD NOT BE USED TO ACTUALLY ENCRYPT
 ## Getting Started
 Simply clone the repository and open the project directory with your favourite python IDE or text editor.  The scripts can be run with python3.
 
-### Prerequesites
+### Dependencies
 This project is being developed with Python 3.6.2
 
-Currently the only dependencies are pandas and numpy, which can be installed with:
+numpy   -> 1.13.3
+pandas  -> 0.21.0
+sympy   -> 1.1.1
 
-```
-pip install numpy
-```
-
-and
-
-```
-pip install pandas
-```
 ### Running the tests
 Automated unit tests can be found in the [tests folder](tests)
 
-The tests can be run using python unittesting
+The tests can be run using python unittest
+
+```
+python3 -m unittest discover tests/
+```
 
 ## Algorithms I Would Like To Implement
 - [ ] Caesar Cipher 
