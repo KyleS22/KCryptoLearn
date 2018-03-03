@@ -9,9 +9,9 @@ Simply clone the repository and open the project directory with your favourite p
 ### Dependencies
 This project is being developed with Python 3.6.2
 
-numpy   -> 1.13.3\\
-pandas  -> 0.21.0\\
-sympy   -> 1.1.1\\
+numpy   -> 1.13.3  
+pandas  -> 0.21.0  
+sympy   -> 1.1.1  
 
 ### Running the tests
 Automated unit tests can be found in the [tests folder](tests)
